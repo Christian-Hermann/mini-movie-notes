@@ -33,10 +33,13 @@ app.get("/movies", (req, res) => {
 });
 
 app.post("/movies", (req, res) => {
+  if (!req.body.title || !req.body.note) {
+    return res.status(400).send("Title and note are required");
+  }
   const newMovie = {
     id: movies.length + 1,
     title: req.body.title,
-    notes: req.body.note,
+    note: req.body.note,
   };
 
   movies.push(newMovie);
