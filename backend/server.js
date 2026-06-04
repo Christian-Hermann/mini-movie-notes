@@ -2,6 +2,8 @@ import express from "express";
 
 const app = express();
 
+app.use(express.json());
+
 const PORT = 3000;
 
 const movies = [
@@ -28,6 +30,18 @@ app.get("/", (req, res) => {
 
 app.get("/movies", (req, res) => {
   res.json(movies);
+});
+
+app.post("/movies", (req, res) => {
+  const newMovie = {
+    id: movies.length + 1,
+    title: req.body.title,
+    notes: req.body.note,
+  };
+
+  movies.push(newMovie);
+
+  res.status(201).json(newMovie);
 });
 
 app.listen(PORT, () => {
