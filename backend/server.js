@@ -48,7 +48,12 @@ app.post("/movies", (req, res) => {
 });
 
 app.delete("/movies/:id", (req, res) => {
-  console.log(req.params);
+  const movieId = Number(req.params.id);
+
+  const movieIndex = movies.findIndex((movie) => movie.id === movieId);
+  movies.splice(movieIndex, 1);
+
+  console.log(movieIndex);
   res.send("Route deleted");
 });
 
