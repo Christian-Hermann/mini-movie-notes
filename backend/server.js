@@ -57,6 +57,13 @@ app.delete("/movies/:id", (req, res) => {
   res.send("Route deleted");
 });
 
+app.put("/movies/:id", (req, res) => {
+  console.log(req.params.id);
+  console.log(req.body);
+
+  res.send("Update initiated");
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
