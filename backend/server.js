@@ -47,20 +47,10 @@ app.post("/movies", (req, res) => {
   res.status(201).json(newMovie);
 });
 
-app.delete("/movies/:id", (req, res) => {
-  const movieId = Number(req.params.id);
-
-  const movieIndex = movies.findIndex((movie) => movie.id === movieId);
-  movies.splice(movieIndex, 1);
-
-  console.log(movieIndex);
-  res.send("Route deleted");
-});
-
 app.put("/movies/:id", (req, res) => {
   const movieId = Number(req.params.id);
 
-  const movieIndex = movies.findIndex((movies) => movie.id === movieId);
+  const movieIndex = movies.findIndex((movie) => movie.id === movieId);
 
   movies[movieIndex] = {
     id: movieId,
@@ -69,6 +59,16 @@ app.put("/movies/:id", (req, res) => {
   };
 
   res.json(movies[movieIndex]);
+});
+
+app.delete("/movies/:id", (req, res) => {
+  const movieId = Number(req.params.id);
+
+  const movieIndex = movies.findIndex((movie) => movie.id === movieId);
+  movies.splice(movieIndex, 1);
+
+  console.log(movieIndex);
+  res.send("Route deleted");
 });
 
 app.listen(PORT, () => {
