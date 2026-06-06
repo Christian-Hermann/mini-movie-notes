@@ -58,10 +58,17 @@ app.delete("/movies/:id", (req, res) => {
 });
 
 app.put("/movies/:id", (req, res) => {
-  console.log(req.params.id);
-  console.log(req.body);
+  const movieId = Number(req.params.id);
 
-  res.send("Update initiated");
+  const movieIndex = movies.findIndex((movies) => movie.id === movieId);
+
+  movies[movieIndex] = {
+    id: movieId,
+    title: req.body.title,
+    note: req.body.note,
+  };
+
+  res.json(movies[movieIndex]);
 });
 
 app.listen(PORT, () => {
