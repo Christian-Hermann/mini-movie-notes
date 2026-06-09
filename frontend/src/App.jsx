@@ -4,6 +4,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
+  const [editMovieId, setEditMovieId] = useState(null);
 
   useEffect(() => {
     async function getMovies() {
@@ -75,12 +76,24 @@ function App() {
           value={note}
           onChange={(event) => setNote(event.target.value)}
         />
-        <button type="submit">Add Movie</button>
+        <button type="submit">
+          {editMovieId ? "Update Movie" : "Add Movie"}
+        </button>
       </form>
+      <p>Editing Movie ID: {editMovieId}</p>
       <ul>
         {movies.map((movie) => (
           <li key={movie.id}>
             <strong>{movie.title}</strong>: {movie.note}
+            <button
+              onClick={() => {
+                setEditMovieId(movie.id),
+                  setTitle(movie.title),
+                  setNote(movie.note);
+              }}
+            >
+              Edit
+            </button>
             <button onClick={() => handleDelete(movie.id)}>Delete</button>
           </li>
         ))}
