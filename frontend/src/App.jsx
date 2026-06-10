@@ -24,25 +24,49 @@ function App() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:3000/movies", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          note,
-        }),
-      });
+    if (editMovieId) {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/movies/${editMovieId}`,
+          {
+            method: "PUT",
+            headers: {
+              "content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title,
+              note,
+            }),
+          }
+        );
 
-      const newMovie = await response.json();
-      setMovies([...movies, newMovie]);
+        const updatedMovie = await response.json();
 
-      setTitle("");
-      setNote("");
-    } catch (error) {
-      console.log(error);
+        console.log(updatedMovie);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        const response = await fetch("http://localhost:3000/movies", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            note,
+          }),
+        });
+
+        const newMovie = await response.json();
+        setMovies([...movies, newMovie]);
+
+        setTitle("");
+        setNote("");
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
@@ -80,7 +104,7 @@ function App() {
           {editMovieId ? "Update Movie" : "Add Movie"}
         </button>
       </form>
-      <p>Editing Movie ID: {editMovieId}</p>
+
       <ul>
         {movies.map((movie) => (
           <li key={movie.id}>
