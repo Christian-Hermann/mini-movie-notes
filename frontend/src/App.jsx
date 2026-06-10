@@ -42,6 +42,18 @@ function App() {
 
         const updatedMovie = await response.json();
 
+        const updatedMovies = movies.map((movie) => {
+          if (movie.id === editMovieId) {
+            return updatedMovie;
+          }
+
+          return movie;
+        });
+
+        setMovies(updatedMovies);
+        setTitle("");
+        setNote("");
+        setEditMovieId(null);
         console.log(updatedMovie);
       } catch (error) {
         console.log(error);
