@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import MovieList from "./components/MovieList";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -31,7 +32,7 @@ function App() {
           {
             method: "PUT",
             headers: {
-              "content-Type": "application/json",
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({
               title,
@@ -117,23 +118,7 @@ function App() {
         </button>
       </form>
 
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie.id}>
-            <strong>{movie.title}</strong>: {movie.note}
-            <button
-              onClick={() => {
-                setEditMovieId(movie.id),
-                  setTitle(movie.title),
-                  setNote(movie.note);
-              }}
-            >
-              Edit
-            </button>
-            <button onClick={() => handleDelete(movie.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <MovieList movies={movies} onDelete={handleDelete} />
     </main>
   );
 }
