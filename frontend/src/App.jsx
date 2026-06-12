@@ -83,6 +83,12 @@ function App() {
     }
   }
 
+  function handleEdit(movie) {
+    setEditMovieId(movie.id);
+    setTitle(movie.title);
+    setNote(movie.note);
+  }
+
   async function handleDelete(id) {
     try {
       await fetch(`http://localhost:3000/movies/${id}`, {
@@ -118,7 +124,7 @@ function App() {
         </button>
       </form>
 
-      <MovieList movies={movies} onDelete={handleDelete} />
+      <MovieList movies={movies} onDelete={handleDelete} onEdit={handleEdit} />
     </main>
   );
 }
