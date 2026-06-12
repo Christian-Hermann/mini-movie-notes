@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import MovieList from "./components/MovieList";
+import MovieForm from "./components/MovieForm";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -106,23 +107,14 @@ function App() {
   return (
     <main>
       <h1>Mini Movie Notes</h1>
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Movie Title"
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-        />
-        <textarea
-          placeholder="Movie note"
-          value={note}
-          onChange={(event) => setNote(event.target.value)}
-        />
-        <button type="submit">
-          {editMovieId ? "Update Movie" : "Add Movie"}
-        </button>
-      </form>
+      <MovieForm
+        title={title}
+        note={note}
+        setTitle={setTitle}
+        setNote={setNote}
+        handleSubmit={handleSubmit}
+        editMovieId={editMovieId}
+      />
 
       <MovieList movies={movies} onDelete={handleDelete} onEdit={handleEdit} />
     </main>
