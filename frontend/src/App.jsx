@@ -27,6 +27,11 @@ function App() {
   async function handleSubmit(event) {
     event.preventDefault();
 
+    if (!title || !note) {
+      alert("Please enter a title and note.");
+      return;
+    }
+
     if (editMovieId) {
       try {
         const response = await fetch(
