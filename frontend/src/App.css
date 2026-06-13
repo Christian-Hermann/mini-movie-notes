@@ -38,3 +38,18 @@ button {
   cursor: pointer;
   padding: 6px 10px;
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.movie-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
