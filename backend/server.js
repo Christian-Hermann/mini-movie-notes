@@ -8,23 +8,7 @@ app.use(express.json());
 
 const PORT = 3000;
 
-const movies = [
-  {
-    id: 1,
-    title: "The Goonies",
-    note: "Best movie ever made.",
-  },
-  {
-    id: 2,
-    title: "Mad Max: Fury Road",
-    note: "Best action movie ever.",
-  },
-  {
-    id: 3,
-    title: "Alien Romulous",
-    note: "Can watch over and over again.",
-  },
-];
+const movies = [];
 
 app.get("/", (req, res) => {
   res.send("Mini Movie Notes API");
@@ -39,7 +23,7 @@ app.post("/movies", (req, res) => {
     return res.status(400).send("Title and note are required");
   }
   const newMovie = {
-    id: movies.length + 1,
+    id: Date.now(),
     title: req.body.title,
     note: req.body.note,
   };
