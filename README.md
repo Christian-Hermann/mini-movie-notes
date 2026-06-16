@@ -1,6 +1,12 @@
-# Mini Movie Notes
+- Mini Movie Notes
 
 Mini Movie Notes is a small React and Express application I built to refresh and reinforce core frontend and backend concepts.
+
+Live Site:
+https://your-netlify-url.netlify.app
+
+API:
+https://mini-movie-notes-api.onrender.com
 
 After spending time working on larger projects, certifications, and my job search, I wanted to build a simple application from scratch to review React state, components, props, CRUD operations, and frontend/backend communication before moving on to my next major project, Sip n' Shred.
 
