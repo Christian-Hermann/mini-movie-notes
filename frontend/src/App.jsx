@@ -12,7 +12,9 @@ function App() {
   useEffect(() => {
     async function getMovies() {
       try {
-        const response = await fetch("http://localhost:3000/movies");
+        const response = await fetch(
+          "https://mini-movie-notes-api.onrender.com/movies"
+        );
         const data = await response.json();
 
         setMovies(data);
@@ -35,7 +37,7 @@ function App() {
     if (editMovieId) {
       try {
         const response = await fetch(
-          `http://localhost:3000/movies/${editMovieId}`,
+          `https://mini-movie-notes-api.onrender.com/movies/${editMovieId}`,
           {
             method: "PUT",
             headers: {
@@ -68,16 +70,19 @@ function App() {
       }
     } else {
       try {
-        const response = await fetch("http://localhost:3000/movies", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title,
-            note,
-          }),
-        });
+        const response = await fetch(
+          "https://mini-movie-notes-api.onrender.com/movies",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title,
+              note,
+            }),
+          }
+        );
 
         const newMovie = await response.json();
         setMovies([...movies, newMovie]);
@@ -98,7 +103,7 @@ function App() {
 
   async function handleDelete(id) {
     try {
-      await fetch(`http://localhost:3000/movies/${id}`, {
+      await fetch(`https://mini-movie-notes-api.onrender.com/movies/${id}`, {
         method: "DELETE",
       });
 
