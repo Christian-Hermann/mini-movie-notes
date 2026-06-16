@@ -1,4 +1,4 @@
-- Mini Movie Notes
+# Mini Movie Notes
 
 Mini Movie Notes is a small React and Express application I built to refresh and reinforce core frontend and backend concepts.
 
